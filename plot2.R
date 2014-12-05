@@ -2,16 +2,16 @@ df <- read.table("./household_power_consumption.txt",header=TRUE,sep=";",na.stri
 
 df <- df[df$Date=="1/2/2007" | df$Date=="2/2/2007",]
 
-df$DateTime <- paste(df$Date,df$Time)
+df$newdate <- paste(df$Date,df$Time)
 
-df[1] <- strptime(df$Date,"%d/%m/%Y %H:%M:%S")
+df$newdate <- strptime(df$newdate,"%d/%m/%Y %H:%M:%S")
 
-x <- df[[10]]
+x <- df$newdate
 
 y <- df[[3]]
 
 png(file="plot2.png",width=480,height=480)
 
-plot(x,y,type="l",ylab="Global Active Power (kilowatts)", main="")
+plot(x,y,type="l",ylab="Global Active Power (kilowatts)",xlab="", main="")
 
 dev.off()
