@@ -2,6 +2,8 @@ df <- read.table("./household_power_consumption.txt",header=TRUE,sep=";",na.stri
 
 df <- df[df$Date=="1/2/2007" | df$Date=="2/2/2007",]
 
+Sys.setlocale('LC_TIME', 'C')
+
 df$newdate <- paste(df$Date,df$Time)
 
 df$newdate <- strptime(df$newdate,"%d/%m/%Y %H:%M:%S")
