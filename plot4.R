@@ -26,7 +26,7 @@ sm2 <- df[[8]]
 #sub metering three
 sm3 <- df[[9]]
 
-png(file="plot4.png",width=960,height=960)
+png(file="plot4.png",width=480,height=480)
 
 par(mfcol=c(2,2))
 
