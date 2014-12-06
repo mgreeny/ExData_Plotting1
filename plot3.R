@@ -2,17 +2,29 @@ df <- read.table("./household_power_consumption.txt",header=TRUE,sep=";",na.stri
 
 df <- df[df$Date=="1/2/2007" | df$Date=="2/2/2007",]
 
-df$DateTime <- paste(df$Date,df$Time)
+df$newdate <- paste(df$Date,df$Time)
 
-df[1] <- strptime(df$Date,"%d/%m/%Y %H:%M:%S")
+df$newdate <- strptime(df$newdate,"%d/%m/%Y %H:%M:%S")
 
-x <- df[[10]]
+x <- df$newdate
 
-y <- df[[3]]
+#sub metering one
+sm1 <- df[[7]]
+
+#sub metering two
+sm2 <- df[[8]]
+
+#sub metering three
+sm3 <- df[[9]]
 
 png(file="plot3.png",width=480,height=480)
 
-plot(x,y,type="l",ylab="Global Active Power (kilowatts)", main="")
+plot(x,sm1,type="n",ylab="Energy sub metering",xlab="", main="")
+
+lines(x,sm1,col="black")
+lines(x,sm2,col="red")
+lines(x,sm3,col="blue")
+
+legend("topright",lty=1,legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),col=c("black","red","blue"))
 
 dev.off()
-
